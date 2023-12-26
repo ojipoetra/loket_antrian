@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antrian System</title>
+    <style>
+        #result {
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="ambilNomorAntrian()">Ambil Nomor Antrian</button>
+    <div id="result"></div>
+
+    <script>
+        function ambilNomorAntrian() {
+            // Menggunakan AJAX untuk mengirim permintaan ke server
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    // Menanggapi hasil yang dikembalikan dari server
+                    document.getElementById("result").innerHTML = "Nomor Antrian Anda: " + xhr.responseText;
+                    printNomorAntrian(xhr.responseText);
+                }
+            };
+            xhr.open("GET", "ambil_nomor_antrian.php", true);
+            xhr.send();
+        }
+
+        function printNomorAntrian(nomor) {
+            // Menggunakan JavaScript untuk mencetak nomor antrian
+            window.print();
+        }
+    </script>
+</body>
+</html>

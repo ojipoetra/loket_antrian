@@ -1,6 +1,6 @@
 
 <?php
-include "confi.php";
+include "config.php";
 // ... (Koneksi database)
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -10,12 +10,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Menyimpan data ke database
     $sql = "INSERT INTO jumlah VALUES ($loket_nomor)";
 
-    if ($conn->query($sql) === TRUE) {
+    if ($connection->query($sql) === TRUE) {
         echo "Data berhasil disimpan ke database.";
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error: " . $sql . "<br>" . $connection->error;
     }
 }
 
 // Menutup koneksi database
-$conn->close();
+$connection->close();
