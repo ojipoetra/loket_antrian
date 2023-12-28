@@ -4,35 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Antrian System</title>
-    <style>
-        #result {
-            font-size: 24px;
-            font-weight: bold;
-        }
-    </style>
+    <!-- css -->
+    <link rel="stylesheet" href="loketHome.css">
+    <!-- boostraps 5.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    
 </head>
 <body>
-    <button onclick="ambilNomorAntrian()">Ambil Nomor Antrian</button>
-    <div id="result"></div>
-
+    <main class="container-fluid">
+        <nav>
+          <h1 class="text-center header-text">
+            Selamat datang di <br />
+            RS Tonggak Husada
+          </h1>
+          <h3 class="text-center header-text">Silahkan Ambil Nomor Antrian</h3>
+        </nav>
+          <div class="row justify-content-center">
+            <div class="col-6">
+              <div class="card text-center">
+                <div class="card-header">Nomor Antrian Anda</div>
+                <div class="card-body ">
+                    <div class="alamat fw-bold fs-5">RS TONGGAK HUSADA</div>
+                    <div id="nomor_antrian"></div>
+                    <div class="d-flex justify-content-center">
+                      <img src="" alt="" id="barcode">
+                      <button onclick="ambilNomorAntrian()" class="btn btn-primary fs-3">Ambil Nomor Antrian</button>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </main>
+      <!--  JsBarcode  CDN -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.6/JsBarcode.all.min.js"></script>
     <script>
+
+      // Membuat barcode
+      function generateBarcode(data){
+        let barcode = document.getElementById("barcode");
+        JsBarcode(barcode, data)
+      }
+      generateBarcode("TGH-2023122850")
+
+      // Mengambil nomor antrian dari server
+
         function ambilNomorAntrian() {
             // Menggunakan AJAX untuk mengirim permintaan ke server
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     // Menanggapi hasil yang dikembalikan dari server
-                    document.getElementById("result").innerHTML = "Nomor Antrian Anda: " + xhr.responseText;
+                    document.getElementById("nomor_antrian").innerHTML = xhr.responseText;
                     printNomorAntrian(xhr.responseText);
                 }
             };
             xhr.open("GET", "ambil_nomor_antrian.php", true);
             xhr.send();
         }
-
-        function printNomorAntrian(nomor) {
-            // Menggunakan JavaScript untuk mencetak nomor antrian
-            window.print();
+        function printNomorAntrian(nomor_antrian){
+          window.print();
         }
     </script>
 </body>

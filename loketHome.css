@@ -1,7 +1,63 @@
-.loket_nomor {
+
+main .row .card .card-body .alamat{
+  display: none;
+}
+
+main .row .card .card-body img{
+  height: 50px;
+  /* display: none; */
+}
+
+#nomor_antrian {
   font-size: 10em;
   font-weight: bold;
   text-align: center;
   background: transparent;
   border: none;
+}
+
+#nomor_antrian .alamat{
+  font-size: 12px;
+}
+
+@media print {
+  *{
+    margin: 0!important;
+    padding: 0!important;
+  }
+  title{
+    display:none;
+  }
+
+  main .header-text{
+    display:none;
+  }
+  main .row .col-6{
+    background: transparent;
+    width: 100%!important;
+    margin: 0!important;
+    padding: 0!important
+  }
+  main .row .card .card-body img{
+    display : block;
+  }
+  main .row .col-6 .card{
+    border: none;
+  }
+  main .card-header{
+    display: none;
+  }
+  main .row .card .card-body .alamat{
+  display : block;
+  font-size: 9px
+ }
+ main .row .card .card-body #nomor_antrian{
+   margin: 0;
+   padding:0;
+   font-size: 50px
+  
+}
+ main .row .card .card-body  button{
+  display : none;
+ }
 }
